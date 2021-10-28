@@ -2,6 +2,7 @@
 pragma solidity  ^0.8.0;
 
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "./MathOperationV1.sol";
 
 contract MathOperationV2 is MathOperationV1 {
     using SafeMath for uint;
