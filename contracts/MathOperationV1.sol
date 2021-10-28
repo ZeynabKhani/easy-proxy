@@ -17,9 +17,7 @@ contract MathOperationV1 is StorageStructure {
      * @dev addition between a and b
      */
     function operation(uint _a, uint _b)  
-        public 
-        virtual
-        onlyOwner 
+        public onlyOwner 
         returns (uint)
     {
         a = _a;

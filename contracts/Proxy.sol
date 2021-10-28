@@ -25,7 +25,7 @@ contract Proxy is StorageStructure {
         external onlyOwner 
     {
         require(mathOperation != _newMathOperation);
-        _setImplementation(_newMathOperation);
+        _setMathOperation(_newMathOperation);
     }
     
     /**
@@ -37,15 +37,12 @@ contract Proxy is StorageStructure {
         address opr = mathOperation;
         require(opr != address(0));
         assembly {
-            let ptr := mload(0x40)
-            calldatacopy(ptr, 0, calldatasize())
-            let result := delegatecall(gas(), opr, ptr, calldatasize(), 0, 0)
-            let size := returndatasize()
-            returndatacopy(ptr, 0, size)
-            
+            calldatacopy(0, 0, calldatasize())
+            let result := delegatecall(gas(), opr, 0, calldatasize(), 0, 0)
+            returndatacopy(0, 0, returndatasize())
             switch result
-            case 0 { revert(ptr, size) }
-            default { return(ptr, size) }
+            case 0 { revert(0, returndatasize()) }
+            default { return(0, returndatasize()) }
         }
     }
     
@@ -53,7 +50,7 @@ contract Proxy is StorageStructure {
      * @dev Sets the address of the current implementation
      * @param _newOpr address of the new mathOperation
      */
-    function _setImplementation(address _newOpr) internal {
+    function _setMathOperation(address _newOpr) internal {
         mathOperation = _newOpr;
     }
 }
