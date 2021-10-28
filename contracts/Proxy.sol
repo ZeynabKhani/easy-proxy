@@ -25,7 +25,7 @@ contract Proxy is StorageStructure {
         external onlyOwner 
     {
         require(mathOperation != _newMathOperation);
-        _setMathOperation(_newMathOperation);
+        _setImplementation(_newMathOperation);
     }
     
     /**
@@ -33,14 +33,14 @@ contract Proxy is StorageStructure {
      * to the given implementation. This function will return 
      * whatever the implementation call returns
      */
-    fallback () payable public {
+    fallback () payable external {
         address opr = mathOperation;
         require(opr != address(0));
         assembly {
             let ptr := mload(0x40)
-            calldatacopy(ptr, 0, calldatasize)
-            let result := delegatecall(gas, opr, ptr, calldatasize, 0, 0)
-            let size := returndatasize
+            calldatacopy(ptr, 0, calldatasize())
+            let result := delegatecall(gas(), opr, ptr, calldatasize(), 0, 0)
+            let size := returndatasize()
             returndatacopy(ptr, 0, size)
             
             switch result

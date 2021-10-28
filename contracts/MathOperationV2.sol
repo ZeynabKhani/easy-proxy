@@ -11,7 +11,9 @@ contract MathOperationV2 is MathOperationV1 {
      * @dev multiplication between a and b
      */
     function operation(uint _a, uint _b)  
-        public onlyOwner 
+        public 
+        override
+        onlyOwner 
         returns (uint)
     {
         a = _a;
