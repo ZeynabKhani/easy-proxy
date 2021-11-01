@@ -13,7 +13,7 @@ contract MathOperationV2 is MathOperationV1  {
      */
     function operation(uint _a, uint _b) 
         override
-        public onlyOwner 
+        public 
         returns (uint)
     {
         a = _a;
@@ -21,4 +21,5 @@ contract MathOperationV2 is MathOperationV1  {
         c = a.mul(b);
         return c;
     }
+        
 }

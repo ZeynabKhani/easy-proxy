@@ -18,12 +18,24 @@ contract MathOperationV1 is StorageStructure {
      */
     function operation(uint _a, uint _b)  
         virtual
-        public onlyOwner 
+        public 
         returns (uint)
     {
         a = _a;
         b = _b;
         c = a.add(b);
         return c;
+    }
+    
+    function addMember(string memory _name)
+        virtual
+        external
+    {
+        members.push(
+            Member({
+                memberAdr: msg.sender,
+                name: _name
+            })
+        );
     }
 }
