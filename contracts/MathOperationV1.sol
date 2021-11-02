@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity  ^0.8.0;
+pragma solidity  0.7.6;
 
 import "./StorageStructure.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+// import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 
 contract MathOperationV1 is StorageStructure {
-    using SafeMath for uint;
+    // using SafeMath for uint;
 
     modifier onlyOwner() {
-        require (msg.sender == owner);
+        require (msg.sender == owner, "msg.sender is not an owner");
         _;
     }
 
@@ -23,7 +23,7 @@ contract MathOperationV1 is StorageStructure {
     {
         a = _a;
         b = _b;
-        c = a.add(b);
+        c = a + b;
         return c;
     }
     

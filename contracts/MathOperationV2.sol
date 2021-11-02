@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity  ^0.8.0;
+pragma solidity  0.7.6;
 
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+// import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 import "./MathOperationV1.sol";
 
 contract MathOperationV2 is MathOperationV1  {
-    using SafeMath for uint;
+    // using SafeMath for uint;
     
     /**
      * @dev multiplication between a and b
@@ -18,7 +18,7 @@ contract MathOperationV2 is MathOperationV1  {
     {
         a = _a;
         b = _b;
-        c = a.mul(b);
+        c = a*b;
         return c;
     }
         
