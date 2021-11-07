@@ -42,5 +42,12 @@
   },
   "scripts": {
     "clean": "rimraf artifacts && rimraf cache && rimraf deployments/localhost && rimraf src/types/*"
-  }
+  },
+  "files": [
+    "contracts",
+    "deployments/*/*.json",
+    "deployments/*/.chainid",
+    "dist/src/types",
+    "export"
+  ]
 }
